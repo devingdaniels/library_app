@@ -12,17 +12,19 @@
 .main-grid-layout{
     display: grid;  
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(5, max-content);
     
 }
 
 /* HEADER SECTION START */
 .header{
-    background-color: rgb(165, 167, 169);
+    background-color: rgb(222, 224, 225);
     grid-column: 1 / 6;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: .2px solid black;
+    
     
 }
 
@@ -45,18 +47,74 @@
 
 /* HEADER SECTION END */
 
+
+/* TOOL SECTION START */
 .tool-panel{
     grid-row:  2 / 6;
+    background-color: rgb(222, 224, 225);
+    padding: 20px;
+    height: 100vh;
+
 }
 
+.tool-panel h1 {
+    text-align: center;
+}
+
+#add-book-button{
+    display:block;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: .5px solid black;
+    cursor: pointer;
+    margin: auto;
+    margin-bottom: 20px;
+}
 
 .search-filter-container{
-    
     grid-column: 2 / 6;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.search-area{
+    display: flex;
+    margin: auto auto auto 20%;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.search-icon{
+    height: 20px;
+}
+
+.filter-area{
+grid-column: 2/4;
 }
 
 .library-grid-container{
-    
     grid-column: 2/6;
     grid-row: 3 / 6;
+   
+}
+.library-grid-container-wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minMax(10rem, 1fr));
+    
+}
+
+/* TOOL SECTION END */
+
+
+
+
+@media (max-width: 690px){
+    .search-filter-container{
+        display: flex;
+        justify-items: flex-start;
+        
+    }
+    /* .search-area{    
+    } */
 }
