@@ -4,3 +4,30 @@
     padding: 0;
 }
 
+:root{
+    
+}
+
+.main-grid-layout{
+    background-color: aqua;
+    display: grid;  
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+.header{
+    background-color: green;
+}
+
+.tool-panel{
+    background-color: purple;
+}
+
+.main-container{
+    background-color: gray;
+}
+
+.search-filter-container{
+    background-color: antiquewhite;
+}
