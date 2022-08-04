@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
 :root{
@@ -9,25 +10,53 @@
 }
 
 .main-grid-layout{
-    background-color: aqua;
     display: grid;  
-    width: 100vw;
-    height: 100vh;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     
 }
 
+/* HEADER SECTION START */
 .header{
-    background-color: green;
+    background-color: rgb(165, 167, 169);
+    grid-column: 1 / 6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
 }
+
+.main-grid-layout .header > h1 {
+    font-size: 3.5rem;
+    margin-left: 3%;
+}
+
+.account-info-container{
+    margin-right: 3%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon{
+    height: 50px;
+    margin-right: .75rem;
+}
+
+/* HEADER SECTION END */
 
 .tool-panel{
-    background-color: purple;
+    grid-row:  2 / 6;
 }
 
-.main-container{
-    background-color: gray;
-}
 
 .search-filter-container{
-    background-color: antiquewhite;
+    
+    grid-column: 2 / 6;
+}
+
+.library-grid-container{
+    
+    grid-column: 2/6;
+    grid-row: 3 / 6;
 }

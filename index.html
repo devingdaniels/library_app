@@ -17,9 +17,13 @@
     <main>
     <div class="main-grid-layout">
         <header class="header">
-            <h1>HEADER SECTION</h1>
-            <div>TITLE</div>
-            <div>PROFILE PICTURE AND ACCOUNT INFO</div>
+                <h1>My Library</h1>
+                <div class="account-info-container">
+                    <div>
+                        <img src="./images/account-circle.svg" alt="Account icon" class="profile-icon">
+                    </div>
+                    <h4>Your name here</h4>
+                </div>
         </header>
         <section class="tool-panel">
             <h1>TOOL PANEL SECTION</h1>
@@ -34,21 +38,27 @@
                 </ul>
             </div>
         </section>
-        <div class="main-container">
-            <div class="search-filter-container">
-                <div class="search-area">
-                    <label for="search-library"></label>
-                    <input type="text" id="search-library" name="search-library" placeholder="search..." minlength="1">
-                </div>
-                <div class="filter-area">
-                    <h1>Filter Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, deleniti?</h1>
-                </div>
+        <div class="search-filter-container">
+            <div class="search-area">
+                <label for="search-library"></label>
+                <input type="text" id="search-library" name="search-library" placeholder="search..." minlength="1">
             </div>
-            <div class="library-grid-container">
-                
-                <!-- Grid layout of books  (need wrapper in here???)-->
+            <div class="filter-area">
+                <h1>Filter</h1>
+                <ul>
+                    <li>Item</li>
+                    <li>Item</li>
+                    <li>Item</li>
+                    <li>Item</li>
+                </ul>
             </div>
         </div>
+        
+            <div class="library-grid-container">
+                <div>CARDs section</div>
+                <!-- Grid layout of books  (need wrapper in here???)-->
+            </div>
+        
     </div>
 </main>
 </body>
