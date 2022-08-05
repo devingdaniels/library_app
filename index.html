@@ -14,10 +14,10 @@
 </head>
 
 <body>
-    <main>
+    <main id="main">
     <div class="main-grid-layout">
         <header class="header">
-                <h1>My Library</h1>
+                <h1>Library</h1>
                 <div class="account-info-container">
                     <div>
                         <img src="./images/account-circle.svg" alt="Account icon" class="profile-icon">
@@ -27,232 +27,31 @@
         </header>
         <section class="tool-panel">            
                 <button type="button" id="add-book-button"><img src="./images/plus.svg" alt=""></button>
-            <h1>Stats</h1>
+                <div class="search-filter-container">
+                    <label for="search-library"></label>
+                    <input type="text" id="search-library" name="search-library" placeholder="Search by title or author" minlength="1">            
+            </div>
             <div class="library-stats">
                 <ul>
-                    <li>Total: <span>0</span></li>
-                    <li>Finished: <span>0</span></li>
-                    <li>Unfinished: <span>0</span></li>
+                    <li>Total</li><span>0</span>
+                    <li>Finished</li><span>0</span>
+                    <li>Unfinished</li><span>0</span>
                 </ul>
             </div>
         </section>
-        <div class="search-filter-container">
-            <div class="search-area">
-                <img src="./images/magnify.svg" alt="Search icon" class="search-icon">
-                <label for="search-library"></label>
-                <input type="text" id="search-library" name="search-library" placeholder="search by title or author" minlength="1">
-            </div>
-            <div class="filter-area">
-                <h1>Filter</h1>
-                <ul>
-                    <li>
-                        <label for="author-a-z">Author</label>
-                        <input type="radio" id="author-a-z">
-                        <span>A-Z</span>
-                        <input type="radio" id="author-a-z">
-                        <span>Z-A</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
             <div class="library-grid-container">
                 <div class="library-grid-container-wrapper">
-                <div id="book-card">
+                <div class="book-card">
                     <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
+                    <p><em>Title: </em>Harry Potter</p>
+                    <p><em>Author: </em>Some Author</p>
+                    <p><em>Pages: </em> 680 </p>
+                    <button>Read</button>
+                    <button>Remove</button>
                 </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
-                <div id="book-card">
-                    <h3>Book</h3>
-                    <p>Title: "fwfwfwfwfwf"</p>
-                    <p>Author: ""wfwfwfw</p>
-                    <p>Page count: 343</p>
-                    <p>Read: yes or no</p>
-                    <button>Save</button>
-                </div>
+                
             </div>
             </div>
-        
     </div>
 </main>
 </body>

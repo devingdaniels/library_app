@@ -5,6 +5,15 @@
     list-style: none;
 }
 
+ul{
+    text-align: center;
+    margin-top: 30px;
+}
+li{
+    padding: 0 0 15px 0;
+    font-weight:bolder;
+}
+
 :root{
     
 }
@@ -23,9 +32,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: .2px solid black;
-    
-    
+    padding-bottom: 10px;
 }
 
 .main-grid-layout .header > h1 {
@@ -51,9 +58,9 @@
 /* TOOL SECTION START */
 .tool-panel{
     grid-row:  2 / 6;
-    background-color: rgb(222, 224, 225);
+    
     padding: 20px;
-    height: 100vh;
+    height: 90vh;
 
 }
 
@@ -69,45 +76,56 @@
     border: .5px solid black;
     cursor: pointer;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-.search-filter-container{
-    grid-column: 2 / 6;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.search-area{
-    display: flex;
-    margin: auto auto auto 20%;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-.search-icon{
-    height: 20px;
-}
-
-.filter-area{
-grid-column: 2/4;
+#search-library{
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 1px solid #2d9fd9;
+     color: black;
+     width: 250px;
+     height: 40px;
+     padding-left: 10px;
 }
 
 .library-grid-container{
     grid-column: 2/6;
-    grid-row: 3 / 6;
+    grid-row: 2 / 6;
    
 }
 .library-grid-container-wrapper{
     display: grid;
     grid-template-columns: repeat(auto-fill, minMax(10rem, 1fr));
+    column-gap: 1%;
+    row-gap: 2%;
+    padding: 10px;
     
 }
 
+.book-card{
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    border-left: 10px solid rgb(94, 3, 3);
+    border: 1px solid;
+    box-shadow: 2px 5px 12px rgb(80, 105, 228);
+    padding: 10px;
+    min-width: 150px;
+}
+
+.book-card > h3, p, button {
+    padding: 0 0 6px 0;
+    font-size: 1.2rem;
+}
+
+.book-card > h3 {
+    text-align: center;
+}
+
+
 /* TOOL SECTION END */
-
-
-
 
 @media (max-width: 690px){
     .search-filter-container{
@@ -115,6 +133,10 @@ grid-column: 2/4;
         justify-items: flex-start;
         
     }
-    /* .search-area{    
-    } */
+}
+
+@media (max-width: 647px){
+    .library-grid-container-wrapper{
+        row-gap: 1%;
+    }
 }
