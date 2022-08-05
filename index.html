@@ -41,18 +41,39 @@
         </section>
             <div class="library-grid-container">
                 <div class="library-grid-container-wrapper">
-                <div class="book-card">
+
+                    
+                <!-- <div class="book-card">
                     <h3>Book</h3>
                     <p><em>Title: </em>Harry Potter</p>
                     <p><em>Author: </em>Some Author</p>
                     <p><em>Pages: </em> 680 </p>
                     <button>Read</button>
                     <button>Remove</button>
-                </div>
+                </div> -->
                 
             </div>
             </div>
     </div>
 </main>
+
+<!-- THIS IS HIDDEN - only access in JS -->
+<div id="form-anchor">
+<form id="form-template" action="#" method="post">
+    <fieldset class="form-flex">
+        <input type="text" id="title" name="title-data" placeholder="Title" required>
+        <input type="text" id="author" name="author-data" placeholder="Author" required>
+        <input type="number" id="pages" name="page-data" placeholder="Page count" required>
+        <div class="read-checkbox-container">
+            <label for="read-checkbox">Have you read it?</label>
+            <input type="checkbox" id="read-checkbox" name="read-data"required></div>
+        
+        <button type="button" id="form-save-button">Save</button> 
+    </fieldset>
+</form>
+</div>
+
+<!-- THIS IS HIDDEN - only access in JS -->
+
 </body>
 </html>

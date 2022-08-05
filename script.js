@@ -1,5 +1,8 @@
 const addBookButton = document.getElementById("add-book-button")
 const libraryGrid = document.querySelector(".library-grid-container-wrapper")
+const form = document.getElementById("form-template")
+const formSaveButton = document.getElementById('form-save-button')
+const main = document.getElementById('main')
 
 
 
@@ -7,31 +10,34 @@ let brain = {
     bookArray: []
 }
 
-
+formSaveButton.onclick = () => {
+    handleData();
+}
 addBookButton.onclick = () => {
-   showForm()
+   displayForm()
 
 }
 
-function showForm(){
+function handleData(){
 
-    // dim the background
-    const main = document.querySelector('.main-grid-layout')
-
-    const form = document.createElement("form")
-    form.style.position = "fixed"
-    form.style.top = "50%"
-    form.style.left = "50%"
-    form.style.transform = "translate(-50%, -50%)"
-    form.style.height = "400px";
-    form.style.width = "400px";
-    form.style.boxShadow = "2px 5px 12px rgb(80, 105, 228)"
-    form.style.backgroundColor = "rgb(222, 224, 225)";
+}
 
 
-   
-    main.appendChild(form)
+function displayForm(){
+    // get the form from HTML
     
+    // dim the main page
+   
+    main.style.opacity = ".1"
+    // turn on display
+    unHideForm(form)
+    //display the form on page
+    const formAnchor = document.getElementById("form-anchor")
+    formAnchor.appendChild(form)
+}
+
+function unHideForm(form){
+    form.style.display = "block"
 }
 
 
