@@ -5,42 +5,43 @@ const formSaveButton = document.getElementById('form-save-button')
 const main = document.getElementById('main')
 
 
-
 let brain = {
-    bookArray: []
+    bookArray: [],
+    title: "",
+    author: "",
+    pages: "",
+    read: false
 }
+
+addBookButton.onclick = () => {
+    displayForm()
+ 
+ }
 
 formSaveButton.onclick = () => {
     handleData();
 }
-addBookButton.onclick = () => {
-   displayForm()
 
+function displayForm(){ 
+    // dim the background
+    turnOnMainOpacity()
+    // show the card
+    displayFormCard()
+    //display the form on page
 }
 
 function handleData(){
 
+    //save the data from the form 
+    // reset the form to base state (reset data in inputs)
+    // hide the card HTML element from the UI
+    hideFormCard()
+    // reset the main opacity 
+    turnOffMainOpacity()
+    // pass the data to a createCard
+    createCard()
+
 }
-
-
-function displayForm(){
-    // get the form from HTML
-    
-    // dim the main page
-   
-    main.style.opacity = ".1"
-    // turn on display
-    unHideForm(form)
-    //display the form on page
-    const formAnchor = document.getElementById("form-anchor")
-    formAnchor.appendChild(form)
-}
-
-function unHideForm(form){
-    form.style.display = "block"
-}
-
-
 
 function createCard(){
     const newBook = document.createElement('div');
@@ -60,12 +61,18 @@ function addToLibrary(){
 }
 
 
+function turnOnMainOpacity(){
+    main.style.opacity = .3;
+}
 
-// <div id="book-card">
-//                     <h3>Book</h3>
-//                     <p><em>Title: </em>Harry Potter</p>
-//                     <p><em>Author: </em>Some Author</p>
-//                     <p><em>Pages: </em> 680 </p>
-//                     <button>Read</button>
-//                     <button>Remove</button>
-//                 </div>     
+function turnOffMainOpacity(){
+    main.style.opacity = 1;
+}
+
+function hideFormCard(){
+    form.style.display = "none"
+}
+
+function displayFormCard(){
+    form.style.display = "block"
+}
