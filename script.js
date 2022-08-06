@@ -3,6 +3,13 @@ const libraryGrid = document.querySelector(".library-grid-container-wrapper")
 const form = document.getElementById("form-template")
 const formCancelButton = document.getElementById('form-cancel-button')
 const main = document.getElementById('main')
+const totalBooks = document.getElementById('total-books')
+const totalReadBooks = document.getElementById('total-read-books')
+const totalUnReadBooks = document.getElementById('total-unread-books')
+
+
+
+
 
 
 let brain = {
@@ -55,39 +62,125 @@ form.addEventListener('submit', (event) =>{
 
 function createCard(book){
 
-    const newBook = document.createElement('div');
-    newBook.classList = "book-card";
-    newBook.dataset = "data-index-number"
-    newBook.dataset.indexNumber = brain.bookArray.length
-    newBook.appendChild(document.createElement('h3')).textContent = "Book"
-    newBook.appendChild(document.createElement('p')).textContent = book.title
-    newBook.appendChild(document.createElement('p')).textContent = book.author
-    newBook.appendChild(document.createElement('p')).textContent = book.pages
+    const newBookCard = document.createElement('div');
+    newBookCard.classList = "book-card";
+    newBookCard.dataset = "data-index-number"
+    newBookCard.dataset.indexNumber = brain.bookArray.length
+    newBookCard.appendChild(document.createElement('h3')).textContent = "Book"
+    newBookCard.appendChild(document.createElement('p')).textContent = book.title
+    newBookCard.appendChild(document.createElement('p')).textContent = book.author
+    newBookCard.appendChild(document.createElement('p')).textContent = book.pages
 
-    let readButton = newBook.appendChild(document.createElement('button'))
+    let readButton = newBookCard.appendChild(document.createElement('button'))
     readButton.textContent = readStatus(book)
      // add ID for styling and for button access
     readButton.setAttribute('id','read-button')
 
-    let removeButton = newBook.appendChild(document.createElement('button'))
+    let removeButton = newBookCard.appendChild(document.createElement('button'))
     removeButton.textContent = "Remove"
     // add ID for styling and for button access
     removeButton.setAttribute('id','remove-button')
 
-   
-    brain.bookArray.push(newBook)
 
-     addToLibrary()
+// add event listeners to read/unread button
+readButton.addEventListener('click', event => {
+    toggleRead(event)
+})
+
+// add event listeners to remove button
+removeButton.addEventListener('click', event => {
+    deleteBookFromLibrary(event)
+})
+
+
+addToLibrary(newBookCard, book)
+}
+
+
+function deleteBookFromLibrary(event){
+// get the index of the card 
+const cardNumber = (event.target.parentElement.dataset.indexNumber)
+// retrieve the book from the brain array
+let book = brain.bookArray[cardNumber]
+// create a nodelist of book-cards
+const bookList = document.querySelectorAll('.book-card')
+//traverse the bookList and find book with matching cardNumber
+bookList.forEach(element => {
+    if (element.getAttribute("data-index-number") === cardNumber){
+        // remove that element from the DOM
+        libraryGrid.removeChild(element)
+    }
+})
+// remove the book from the brain array
+brain.bookArray.pop(book);
+
+updateStats()
+
+console.log(libraryGrid)
+console.log(brain.bookArray)
+
+
+
 
 }
 
-function addToLibrary(){
 
-    brain.bookArray.forEach(element => {
-        libraryGrid.appendChild(element)
-    });
+
+
+function toggleRead(event){
+    // get the index of the card 
+    const cardNumber = (event.target.parentElement.dataset.indexNumber)
+    // retrieve the book from the brain array
+    let book = brain.bookArray[cardNumber]
+    // update the read status in the book object
+    if (!getReadStatus(book)){
+        book.read = true;
+    }else if (getReadStatus(book)) {
+        book.read = false;
+    }
+    // update the button label with the current status
+    event.target.textContent = readStatus(book)
+    updateStats()
 }
 
+
+function addToLibrary(newBookCard,book){
+    // add the book card to the grid
+    libraryGrid.appendChild(newBookCard)
+    // add the book object to the array
+    brain.bookArray.push(book)
+    updateStats()
+}
+
+function updateStats(){
+    // display the total books
+    totalBooks.textContent = brain.bookArray.length
+    // display the total read books
+    totalReadBooks.textContent = getTotalRead()
+    // display the total read books
+    totalUnReadBooks.textContent = getTotalUnRead()
+}
+
+function getTotalRead(){
+    let totalRead = 0
+
+    brain.bookArray.forEach(book =>{
+        if (book.read === true){
+            totalRead += 1
+        }
+    })
+    return totalRead
+}
+
+function getTotalUnRead(){
+    let totalUnRead = 0
+    brain.bookArray.forEach(book =>{
+        if (book.read === false){
+            totalUnRead += 1
+        }
+    })
+    return totalUnRead
+}
 
 
 function readStatus(book){
@@ -95,6 +188,10 @@ function readStatus(book){
         return "Read"
     } 
     return "Unread"
+}
+
+function getReadStatus(book){
+    return book.read
 }
 
 function resetFormData(){
@@ -113,6 +210,7 @@ function displayForm(){
 }
 
 function hideForm(){
+    resetFormData()
     turnOffMainOpacity()
     hideFormCard()
 }

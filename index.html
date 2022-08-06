@@ -33,9 +33,9 @@
             </div>
             <div class="library-stats">
                 <ul>
-                    <li>Total</li><span>0</span>
-                    <li>Finished</li><span>0</span>
-                    <li>Unfinished</li><span>0</span>
+                    <li>Total</li><span id="total-books">0</span>
+                    <li >Finished</li><span id="total-read-books">0</span>
+                    <li >Unfinished"</li><span id="total-unread-books">0</span>
                 </ul>
             </div>
         </section>
@@ -49,7 +49,7 @@
 
 <form id="form-template" action="#" method="post">
     <fieldset id="form-flex-container">
-        <input type="text" id="form-title" placeholder="Title" minlength="1" required>
+        <input type="text" id="form-title" placeholder="Title" minlength="1" maxlength="50" required>
         <input type="text" id="form-author" placeholder="Author" minlength="1" required>
         <input type="number" id="form-pages" placeholder="Page count" min="1" required>
         <div class="read-checkbox-container">
