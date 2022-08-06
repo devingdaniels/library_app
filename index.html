@@ -41,33 +41,27 @@
         </section>
             <div class="library-grid-container">
                 <div class="library-grid-container-wrapper">   
-                <div class="book-card">
-                    <h3>Book</h3>
-                    <p>Harry Potter</p>
-                    <p>Some Author</p>
-                    <p>680</p>
-                    <button type="button" id="read-button">Read</button>
-                    <button type="button" id="remove-button">Remove</button>
-                </div>
-                
             </div>
             </div>
     </div>
 </main>
 <!-- THIS IS HIDDEN - only access in JS -->
+
 <form id="form-template" action="#" method="post">
     <fieldset id="form-flex-container">
-        <input type="text" id="title" name="title-data" placeholder="Title" required>
-        <input type="text" id="author" name="author-data" placeholder="Author" required>
-        <input type="number" id="pages" name="page-data" placeholder="Page count" required>
+        <input type="text" id="form-title" placeholder="Title" minlength="1" required>
+        <input type="text" id="form-author" placeholder="Author" minlength="1" required>
+        <input type="number" id="form-pages" placeholder="Page count" min="1" required>
         <div class="read-checkbox-container">
             <label for="read-checkbox">Have you read it?</label>
-            <input type="checkbox" id="read-checkbox" name="read-data"required></div>
-        
-        <button type="button" id="form-save-button">Save</button> 
+            <input type="checkbox" id="form-read-checkbox">
+        </div>
+        <div class="form-buttons-container">
+            <button type="button" id="form-cancel-button">Cancel</button>
+            <button type="submit" >Save</button>
+        </div>
     </fieldset>
 </form>
-
 
 <!-- THIS IS HIDDEN - only access in JS -->
 
