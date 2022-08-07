@@ -66,16 +66,12 @@ li{
     gap: 5%;
 }
 
-:root{
-    
-}
 
 .main-grid-layout{
     display: grid;  
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, max-content);
-    
-    
+
 }
 
 /* HEADER SECTION START */
