@@ -50,6 +50,8 @@ else {
     // update the UI with current library listing 
     updateBookLibraryUI() 
 }
+
+    updateStats()
 })
 
 
@@ -108,7 +110,6 @@ function createBookObject(){
     
 
 /* HELPER FUNCTIONS */
-
 function createBookCardRemoveButton(bookCardRemoveButton){
     // add the style class
     bookCardRemoveButton.id = "remove-button"
@@ -116,7 +117,6 @@ function createBookCardRemoveButton(bookCardRemoveButton){
     bookCardRemoveButton.textContent = "remove"
     // add event listener
     bookCardRemoveButton.addEventListener('click', event =>{
-       // console.log(event.target.parentElement)
         removeBookFromLibrary(event)
     })
     }
@@ -128,8 +128,6 @@ function removeBookFromLibrary(event){
     removeBookFromLibraryDatabase(event.target.parentElement.id)
     // update the stats
     updateStats()
-
-
     //  // FOR TESTING
     //  console.log("libraryGrid after deleting bookCard--->")
     //  console.log(libraryGrid)
@@ -138,7 +136,6 @@ function removeBookFromLibrary(event){
 }
 
 function removeBookFromLibraryDatabase(title){
-
     // Get the index of the object with the title to remove
     // Pass that index into the splice function, remove that item
     library.bookDatabase.splice(library.bookDatabase.findIndex(item => item.title === title), 1)
@@ -148,7 +145,6 @@ function removeBookCardFromUI(bookCard){
     // traverse the dom and remove the card with matching id
     // remove the space from the bookCard.id string
     const arrayOfUIBooks = Array.from(document.querySelectorAll('.book-card')) 
-
     arrayOfUIBooks.forEach(element =>{
         if (element.id === bookCard.id){
             libraryGrid.removeChild(element)
@@ -159,13 +155,42 @@ function removeBookCardFromUI(bookCard){
 function createBookCardReadButton(bookCardReadButton, book){
      // add the style class
     bookCardReadButton.id = "read-button"
-    // add label
+    // add label with correct read status
     bookCardReadButton.textContent = isRead(book)
-    // add event listener
+    // add event listener so it will change when user clicks
+    bookCardReadButton.addEventListener('click', e => {
+        bookCardReadButton.textContent = invertIsReadButton(bookCardReadButton)
+        updateBookIsReadStatus(e)
+    })
+}
+
+function updateBookIsReadStatus(e){
+    // get and save the id of the current bookCard
+    const bookCardID = e.target.parentElement.id // id of book card, ie title
+    updateIsReadStatusInBookDatabase(bookCardID)
+}
+
+function updateIsReadStatusInBookDatabase(bookCardID){
+    library.bookDatabase.forEach(book => {
+        if (book.title === bookCardID){            
+           if (book.isRead === true){
+            book.isRead = false
+           }else {
+            book.isRead = true
+           }
+        }
+    })
+}
+
+function invertIsReadButton(bookCardReadButton){
+    if (bookCardReadButton.textContent === "Read"){
+        return "Unread"
+    }else {
+        return "Read"
+    }
 }
 
 function isRead(book){
-
     if (book.isRead === true){
         return "Read"
     }else if (book.isRead === false) {
@@ -223,9 +248,21 @@ function hideFormCard(){
 
 
 function updateStats(){
-    displayTotalBooksInLibrary()
+    totalBooks.textContent =  getTotalBooks()
+    totalReadBooks.textContent =  getTotalReadBooks()
+    totalUnReadBooks.textContent =  getTotalUnreadBooks()
 }
 
-function displayTotalBooksInLibrary(){
-    totalBooks.textContent = library.bookDatabase.length
+function getTotalReadBooks(){
+   
+    // return total books in the database with isRead true
+
+}
+
+function getTotalUnreadBooks(){
+    // return total books in the database with isRead false 
+}
+
+function getTotalBooks(){
+    return library.bookDatabase.length
 }
