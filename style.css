@@ -76,12 +76,13 @@ li{
 
 /* HEADER SECTION START */
 .header{
-    background-color: rgb(222, 224, 225);
+    background-color: rgb(3, 70, 103);
     grid-column: 1 / 6;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 10px;
+    color: white;
 }
 
 .main-grid-layout .header > h1 {
@@ -99,6 +100,7 @@ li{
 .profile-icon{
     height: 50px;
     margin-right: .75rem;
+    filter: invert(100%);
 }
 
 /* HEADER SECTION END */
@@ -107,7 +109,8 @@ li{
 /* TOOL SECTION START */
 .tool-panel{
     grid-row:  2 / 6;
-
+    color: black;
+    background-color: #2d9fd9;
     padding: 20px;
     height: 90vh;
 

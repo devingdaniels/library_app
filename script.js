@@ -30,6 +30,8 @@ addBookButton.onclick = () => {
     displayBookForm()
 }
 
+formCancelButton.addEventListener('click', hideForm)
+
 form.addEventListener('submit', event=>{
 // prevents auto submitting of the form
 event.preventDefault() 
@@ -37,26 +39,21 @@ event.preventDefault()
 
 // verify the title is not already in existence 
 let title = document.getElementById('form-title').value
-
 if (checkForDuplicateTitle(title)){
-
 // add code here to display message on the card
-
     alert("that book already exists")
 }
 else {
-
     const book = createBookObject()
-
-    addBookToDatabase(book)// helper function, pushes book object onto the array
-    
-    addBookToLibraryUI() // update the UI with current library listing 
+    // helper function, pushes book object onto the array
+    addBookToDatabase(book)
+    // update the UI with current library listing 
+    updateBookLibraryUI() 
 }
 })
 
 
-function addBookToLibraryUI(){
-
+function updateBookLibraryUI(){
     // reset library UI before updating with current listing
     resetLibraryUI()
     // Wipe the data from the form and hide it form the user
@@ -68,8 +65,17 @@ function addBookToLibraryUI(){
         const bookCard = createBookUiCard(book)
         libraryGrid.append(bookCard)
     })
+   
+    // updateStats()
+    displayTotalBooksInLibrary()
 
-    console.log(library.bookDatabase)
+
+    // // FOR TESTING
+    // console.log("library.database after adding book-->")
+    // console.log(library.bookDatabase)
+    // console.log("libraryGrid after adding bookCard--->")
+    // console.log(libraryGrid)
+
 }
 
 function createBookUiCard(book){
@@ -80,10 +86,15 @@ function createBookUiCard(book){
     bookCard.appendChild(document.createElement('p')).textContent = book.title
     bookCard.appendChild(document.createElement('p')).textContent = book.author
     bookCard.appendChild(document.createElement('p')).textContent = book.pages
-    bookCard.appendChild(document.createElement('button')).textContent = "toggle"
-    bookCard.appendChild(document.createElement('button')).textContent = "remove"
+    // create the buttons on the card
+    // Add all needed button functionality / styling
+    const bookCardReadButton =  bookCard.appendChild(document.createElement('button'))
+    createBookCardReadButton(bookCardReadButton, book)
+    const bookCardRemoveButton = bookCard.appendChild(document.createElement('button'))
+    createBookCardRemoveButton(bookCardRemoveButton)
     return bookCard
 }
+
 
 function createBookObject(){
     let title = document.getElementById('form-title').value
@@ -94,17 +105,73 @@ function createBookObject(){
     return book
 }
 
-
-
-
-
-
-
-
-
-
+    
 
 /* HELPER FUNCTIONS */
+
+function createBookCardRemoveButton(bookCardRemoveButton){
+    // add the style class
+    bookCardRemoveButton.id = "remove-button"
+    // add label
+    bookCardRemoveButton.textContent = "remove"
+    // add event listener
+    bookCardRemoveButton.addEventListener('click', event =>{
+       // console.log(event.target.parentElement)
+        removeBookFromLibrary(event)
+    })
+    }
+
+function removeBookFromLibrary(event){
+    // remove the book card from the UI library
+    removeBookCardFromUI(event.target.parentElement)
+    // remove the book from the database
+    removeBookFromLibraryDatabase(event.target.parentElement.id)
+    // update the stats
+    updateStats()
+
+
+    //  // FOR TESTING
+    //  console.log("libraryGrid after deleting bookCard--->")
+    //  console.log(libraryGrid)
+    //  console.log("library.bookDatabase after deleting bookCard--->")
+    //  console.log(library.bookDatabase)
+}
+
+function removeBookFromLibraryDatabase(title){
+
+    // Get the index of the object with the title to remove
+    // Pass that index into the splice function, remove that item
+    library.bookDatabase.splice(library.bookDatabase.findIndex(item => item.title === title), 1)
+}
+
+function removeBookCardFromUI(bookCard){
+    // traverse the dom and remove the card with matching id
+    // remove the space from the bookCard.id string
+    const arrayOfUIBooks = Array.from(document.querySelectorAll('.book-card')) 
+
+    arrayOfUIBooks.forEach(element =>{
+        if (element.id === bookCard.id){
+            libraryGrid.removeChild(element)
+        }
+    })
+}
+    
+function createBookCardReadButton(bookCardReadButton, book){
+     // add the style class
+    bookCardReadButton.id = "read-button"
+    // add label
+    bookCardReadButton.textContent = isRead(book)
+    // add event listener
+}
+
+function isRead(book){
+
+    if (book.isRead === true){
+        return "Read"
+    }else if (book.isRead === false) {
+        return "Unread"
+    } 
+}
 
 function checkForDuplicateTitle(title){
     return library.bookDatabase.some(el =>el.title === title)
@@ -128,7 +195,6 @@ function resetLibraryUI(){
     libraryGrid.innerHTML = ""
 }
 
-
 function hideForm(){
     resetFormData()
     turnOffMainOpacity()
@@ -142,13 +208,24 @@ function resetFormData(){
    document.getElementById('form-pages').value = ""     
    document.getElementById('form-read-checkbox').checked = false
 }
+
 function turnOnMainOpacity(){
     main.style.opacity = .3;
 }
+
 function turnOffMainOpacity(){
     main.style.opacity = 1;
 }
+
 function hideFormCard(){
     form.style.display = "none"
 }
 
+
+function updateStats(){
+    displayTotalBooksInLibrary()
+}
+
+function displayTotalBooksInLibrary(){
+    totalBooks.textContent = library.bookDatabase.length
+}
