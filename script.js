@@ -49,9 +49,9 @@ else {
     addBookToDatabase(book)
     // update the UI with current library listing 
     updateBookLibraryUI() 
+    // update the stats
+    // updateStats()
 }
-
-    updateStats()
 })
 
 
@@ -68,8 +68,7 @@ function updateBookLibraryUI(){
         libraryGrid.append(bookCard)
     })
    
-    // updateStats()
-    displayTotalBooksInLibrary()
+     updateStats()
 
 
     // // FOR TESTING
@@ -114,7 +113,7 @@ function createBookCardRemoveButton(bookCardRemoveButton){
     // add the style class
     bookCardRemoveButton.id = "remove-button"
     // add label
-    bookCardRemoveButton.textContent = "remove"
+    bookCardRemoveButton.textContent = "Remove"
     // add event listener
     bookCardRemoveButton.addEventListener('click', event =>{
         removeBookFromLibrary(event)
@@ -128,6 +127,8 @@ function removeBookFromLibrary(event){
     removeBookFromLibraryDatabase(event.target.parentElement.id)
     // update the stats
     updateStats()
+
+
     //  // FOR TESTING
     //  console.log("libraryGrid after deleting bookCard--->")
     //  console.log(libraryGrid)
@@ -161,6 +162,7 @@ function createBookCardReadButton(bookCardReadButton, book){
     bookCardReadButton.addEventListener('click', e => {
         bookCardReadButton.textContent = invertIsReadButton(bookCardReadButton)
         updateBookIsReadStatus(e)
+        updateStats()
     })
 }
 
@@ -171,15 +173,14 @@ function updateBookIsReadStatus(e){
 }
 
 function updateIsReadStatusInBookDatabase(bookCardID){
-    library.bookDatabase.forEach(book => {
-        if (book.title === bookCardID){            
-           if (book.isRead === true){
-            book.isRead = false
-           }else {
-            book.isRead = true
-           }
-        }
-    })
+    
+    const index = library.bookDatabase.findIndex(element => element.title === bookCardID)
+
+    if ( library.bookDatabase[index].isRead === true){
+        library.bookDatabase[index].isRead = false
+    }else {
+        library.bookDatabase[index].isRead = true
+    }
 }
 
 function invertIsReadButton(bookCardReadButton){
@@ -248,21 +249,28 @@ function hideFormCard(){
 
 
 function updateStats(){
-    totalBooks.textContent =  getTotalBooks()
+    totalBooks.textContent = library.bookDatabase.length
     totalReadBooks.textContent =  getTotalReadBooks()
     totalUnReadBooks.textContent =  getTotalUnreadBooks()
 }
 
 function getTotalReadBooks(){
    
-    // return total books in the database with isRead true
-
+    let total = 0
+    library.bookDatabase.forEach(book => {
+        if (book.isRead === true){
+            total += 1
+        }
+    })
+    return total
 }
 
 function getTotalUnreadBooks(){
-    // return total books in the database with isRead false 
-}
-
-function getTotalBooks(){
-    return library.bookDatabase.length
+    let total = 0
+    library.bookDatabase.forEach(book => {
+        if (book.isRead === false){
+            total += 1
+        }
+    })
+    return total
 }
