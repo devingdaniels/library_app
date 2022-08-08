@@ -70,13 +70,6 @@ function updateBookLibraryUI(){
    
      updateStats()
 
-
-    // // FOR TESTING
-    // console.log("library.database after adding book-->")
-    // console.log(library.bookDatabase)
-    // console.log("libraryGrid after adding bookCard--->")
-    // console.log(libraryGrid)
-
 }
 
 function createBookUiCard(book){
