@@ -120,13 +120,6 @@ function removeBookFromLibrary(event){
     removeBookFromLibraryDatabase(event.target.parentElement.id)
     // update the stats
     updateStats()
-
-
-    //  // FOR TESTING
-    //  console.log("libraryGrid after deleting bookCard--->")
-    //  console.log(libraryGrid)
-    //  console.log("library.bookDatabase after deleting bookCard--->")
-    //  console.log(library.bookDatabase)
 }
 
 function removeBookFromLibraryDatabase(title){
@@ -199,6 +192,8 @@ function checkForDuplicateTitle(title){
 function displayBookForm(){
     // for styling, make form stand out 
     turnOnBackgroundOpacity()
+    // Disable pointer events on the add book button
+    disableAddBookButton()
     form.style.display = "block"
 }
 
@@ -215,9 +210,14 @@ function resetLibraryUI(){
 }
 
 function hideForm(){
+    // Reset any data that was entered
     resetFormData()
+    // reset site opacity
     turnOffMainOpacity()
+    // Remove the form from DOM
     hideFormCard()
+    // Enable add book button
+    enableAddBookButton()
 }
 
 function resetFormData(){
@@ -266,4 +266,12 @@ function getTotalUnreadBooks(){
         }
     })
     return total
+}
+
+function disableAddBookButton(){
+    addBookButton.style.pointerEvents = 'none'
+}
+
+function enableAddBookButton(){
+    addBookButton.style.pointerEvents = 'auto'
 }
