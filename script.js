@@ -36,7 +36,6 @@ form.addEventListener('submit', event=>{
 // prevents auto submitting of the form
 event.preventDefault() 
 // use the data from the form to create a book object
-
 // verify the title is not already in existence 
 let title = document.getElementById('form-title').value
 if (checkForDuplicateTitle(title)){
@@ -48,9 +47,7 @@ else {
     // helper function, pushes book object onto the array
     addBookToDatabase(book)
     // update the UI with current library listing 
-    updateBookLibraryUI() 
-    // update the stats
-    // updateStats()
+    updateBookLibraryUI()     
 }
 })
 
@@ -67,9 +64,7 @@ function updateBookLibraryUI(){
         const bookCard = createBookUiCard(book)
         libraryGrid.append(bookCard)
     })
-   
      updateStats()
-
 }
 
 function createBookUiCard(book){
